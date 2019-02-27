@@ -44,24 +44,21 @@ public class WBShareCallbackActivity extends Activity implements WbShareCallback
         this.mSinaWBHandler.onNewIntent(intent, this);
     }
 
-//    @Override
-//    public void onResponse(BaseResponse baseResponse) {
-//        this.mSinaWBHandler.onResponse(baseResponse);
-//        finish();
-//    }
-
     @Override
     public void onWbShareSuccess() {
-
+        this.mSinaWBHandler.onWbShareSuccess();
+        finish();
     }
 
     @Override
     public void onWbShareCancel() {
-
+        this.mSinaWBHandler.onWbShareCancel();
+        finish();
     }
 
     @Override
     public void onWbShareFail() {
-
+        this.mSinaWBHandler.onWbShareFail();
+        finish();
     }
 }

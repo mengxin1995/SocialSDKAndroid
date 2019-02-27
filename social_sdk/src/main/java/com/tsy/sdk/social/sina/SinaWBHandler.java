@@ -130,34 +130,7 @@ public class SinaWBHandler extends SSOHandler {
             return ;
         }
 
-//        SendMultiMessageToWeiboRequest request = new SendMultiMessageToWeiboRequest();
-//        request.transaction = String.valueOf(System.currentTimeMillis());
-//        request.multiMessage = weiboMessage;
-//
-//        Oauth2AccessToken accessToken = AccessTokenKeeper.readAccessToken(mContext.getApplicationContext());
-//        String token = "";
-//        if (accessToken != null) {
-//            token = accessToken.getToken();
-//        }
-//        mWeiboShareHandler.sendRequest(mActivity, request, mAuthInfo, token, new WeiboAuthListener() {
-//
-//            @Override
-//            public void onWeiboException( WeiboException arg0 ) {
-//            }
-//
-//            @Override
-//            public void onComplete( Bundle bundle ) {
-//                // TODO Auto-generated method stub
-//                Oauth2AccessToken newToken = Oauth2AccessToken.parseAccessToken(bundle);
-//                AccessTokenKeeper.writeAccessToken(mContext.getApplicationContext(), newToken);
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//            }
-//        });
-
-//        mWeiboShareAPI.sendRequest(mActivity, request);
+        mWeiboShareHandler.shareMessage(weiboMessage, false);
     }
 
     @Override
@@ -167,31 +140,27 @@ public class SinaWBHandler extends SSOHandler {
         }
     }
 
-    public void onNewIntent(Intent intent, WbShareCallback response) {
+    public void onNewIntent(Intent intent, WbShareCallback callback) {
         if(mWeiboShareHandler != null) {
-            mWeiboShareHandler.doResultIntent(intent, response);
+            mWeiboShareHandler.doResultIntent(intent, callback);
         }
     }
 
-//    public void onResponse(BaseResponse baseResponse) {
-//        if(baseResponse!= null){
-//            switch (baseResponse.errCode) {
-//                case WBConstants.ErrorCode.ERR_OK:
-//                    if(this.mShareListener != null) {
-//                        this.mShareListener.onComplete(this.mConfig.getName());
-//                    }
-//                    break;
-//                case WBConstants.ErrorCode.ERR_CANCEL:
-//                    if(this.mShareListener != null) {
-//                        this.mShareListener.onCancel(this.mConfig.getName());
-//                    }
-//                    break;
-//                case WBConstants.ErrorCode.ERR_FAIL:
-//                    if(this.mShareListener != null) {
-//                        this.mShareListener.onError(this.mConfig.getName(), baseResponse.errMsg);
-//                    }
-//                    break;
-//            }
-//        }
-//    }
+    public void onWbShareSuccess() {
+        if(this.mShareListener != null) {
+            this.mShareListener.onComplete(this.mConfig.getName());
+        }
+    }
+
+    public void onWbShareCancel() {
+        if(this.mShareListener != null) {
+            this.mShareListener.onCancel(this.mConfig.getName());
+        }
+    }
+
+    public void onWbShareFail() {
+        if(this.mShareListener != null) {
+            this.mShareListener.onError(this.mConfig.getName(), "sina share failed");
+        }
+    }
 }
