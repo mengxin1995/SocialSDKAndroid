@@ -33,7 +33,6 @@ import java.util.Map;
 public class SinaWBHandler extends SSOHandler {
 
     private Context mContext;
-    private Activity mActivity;
 
     private AuthInfo mAuthInfo;
     private SsoHandler mSsoHandler;
@@ -59,14 +58,13 @@ public class SinaWBHandler extends SSOHandler {
         this.mContext = context;
         this.mConfig = (PlatformConfig.SinaWB) config;
         this.mAuthInfo = new AuthInfo(mContext, mConfig.appKey, REDIRECT_URL, SCOPE);
-        WbSdk.install(mActivity, mAuthInfo);
     }
 
     @Override
     public void authorize(Activity activity, AuthListener authListener) {
-        this.mActivity = activity;
+        WbSdk.install(activity, mAuthInfo);
         this.mAuthListener = authListener;
-        this.mSsoHandler = new SsoHandler(mActivity);
+        this.mSsoHandler = new SsoHandler(activity);
         mSsoHandler.authorize(new WbAuthListener() {
 
             @Override
@@ -102,10 +100,10 @@ public class SinaWBHandler extends SSOHandler {
 
     @Override
     public void share(Activity activity, IShareMedia shareMedia, ShareListener shareListener) {
-        this.mActivity = activity;
+        WbSdk.install(activity, mAuthInfo);
         this.mShareListener = shareListener;
-        this.mSsoHandler = new SsoHandler(mActivity);
-        this.mWeiboShareHandler = new WbShareHandler(mActivity);
+        this.mSsoHandler = new SsoHandler(activity);
+        this.mWeiboShareHandler = new WbShareHandler(activity);
         this.mWeiboShareHandler.registerApp();
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
 

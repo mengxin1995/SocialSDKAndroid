@@ -38,7 +38,6 @@ import java.util.Date;
 public class QQHandler extends SSOHandler {
 
     private Context mContext;
-    private Activity mActivity;
 
     private Tencent mTencent;
 
@@ -59,11 +58,10 @@ public class QQHandler extends SSOHandler {
     }
 
     @Override
-    public void authorize(Activity activity, AuthListener authListener) {
-        this.mActivity = activity;
+    public void authorize(final Activity activity, AuthListener authListener) {
         this.mAuthListener = authListener;
 
-        this.mTencent.login(this.mActivity, "all", new IUiListener() {
+        this.mTencent.login(activity, "all", new IUiListener() {
             @Override
             public void onComplete(Object o) {
                 if (null == o || ((JSONObject)o) == null) {
@@ -78,7 +76,7 @@ public class QQHandler extends SSOHandler {
 
                 mAuthListener.onComplete(mConfig.getName(), Utils.jsonToMap(response));
 
-                mTencent.logout(mActivity);
+                mTencent.logout(activity);
             }
 
             @Override
@@ -97,7 +95,6 @@ public class QQHandler extends SSOHandler {
 
     @Override
     public void share(Activity activity, IShareMedia shareMedia, ShareListener shareListener) {
-        this.mActivity = activity;
         this.mShareListener = shareListener;
 
         //获取当前时间
@@ -136,7 +133,7 @@ public class QQHandler extends SSOHandler {
             }
 
             //qq zone分享
-            this.mTencent.shareToQzone(this.mActivity, params, new IUiListener() {
+            this.mTencent.shareToQzone(activity, params, new IUiListener() {
                 @Override
                 public void onComplete(Object o) {
                     mShareListener.onComplete(mConfig.getName());
@@ -206,7 +203,7 @@ public class QQHandler extends SSOHandler {
             }
 
             //qq分享
-            mTencent.shareToQQ(mActivity, params, new IUiListener() {
+            mTencent.shareToQQ(activity, params, new IUiListener() {
                 @Override
                 public void onComplete(Object o) {
                     mShareListener.onComplete(mConfig.getName());

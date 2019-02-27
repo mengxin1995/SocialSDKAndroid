@@ -43,7 +43,6 @@ import java.util.Map;
 public class WXHandler extends SSOHandler {
 
     private Context mContext;
-    private Activity mActivtiy;
 
     private IWXAPI mWXApi;
 
@@ -115,7 +114,6 @@ public class WXHandler extends SSOHandler {
             return ;
         }
 
-        this.mActivtiy = activity;
         this.mAuthListener = authListener;
 
         SendAuth.Req req1 = new SendAuth.Req();
@@ -162,7 +160,6 @@ public class WXHandler extends SSOHandler {
             return ;
         }
 
-        this.mActivtiy = activity;
         this.mShareListener = shareListener;
 
         WXMediaMessage msg = new WXMediaMessage();
