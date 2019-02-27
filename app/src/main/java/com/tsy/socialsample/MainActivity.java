@@ -28,18 +28,18 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
     private static final int REQUEST_LOCATION = 1;
-    @BindView(R.id.radioGShareMedia)
+//    @BindView(R.id.radioGShareMedia)
     RadioGroup radioGShareMedia;
 
-    @BindView(R.id.radioGSharePlatform)
+//    @BindView(R.id.radioGSharePlatform)
     RadioGroup radioGSharePlatform;
 
     private static final String WX_APPID = "your wx appid";    //申请的wx appid
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
 
         PlatformConfig.setWeixin(WX_APPID);
         PlatformConfig.setQQ(QQ_APPID);
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     /**
      * 微信登录
      */
-    @OnClick(R.id.btnWXLogin)
+//    @OnClick(R.id.btnWXLogin)
     public void onWXLogin() {
         mSocialApi.doOauthVerify(this, PlatformType.WEIXIN , new MyAuthListener());
     }
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     /**
      * qq登录
      */
-    @OnClick(R.id.btnQQLogin)
+//    @OnClick(R.id.btnQQLogin)
     public void onQQLogin() {
         mSocialApi.doOauthVerify(this, PlatformType.QQ, new MyAuthListener());
     }
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     /**
      * 新浪微博登录
      */
-    @OnClick(R.id.btnSinaWBLogin)
+//    @OnClick(R.id.btnSinaWBLogin)
     public void onSinaWBLogin() {
         mSocialApi.doOauthVerify(this, PlatformType.SINA_WB, new MyAuthListener());
     }
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
-    @OnClick(R.id.btnShare)
+//    @OnClick(R.id.btnShare)
     public void onShare() {
         //获取分享类型
         IShareMedia shareMedia;

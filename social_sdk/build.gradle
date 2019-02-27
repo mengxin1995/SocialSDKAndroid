@@ -1,13 +1,15 @@
+
+
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'maven-publish'
+//apply plugin: 'com.novoda.bintray-release'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 14
@@ -20,6 +22,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+
+        }
     }
 }
 
@@ -29,22 +34,23 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     //    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.4.0'
     compile 'com.sina.weibo.sdk:core:1.0.0:openDefaultRelease@aar'
+    //    compile(name: 'openDefault-4.3.6', ext: 'aar')
 }
 
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-    options.addStringOption('charSet', 'UTF-8')
-}
+//tasks.withType(Javadoc) {
+//    options.addStringOption('Xdoclint:none', '-quiet')
+//    options.addStringOption('encoding', 'UTF-8')
+//    options.addStringOption('charSet', 'UTF-8')
+//}
 
-publish {
-    userOrg = 'tangsiyuan'
-    groupId = 'com.tsy.social'
-    artifactId = 'social-sdk-full'
-    publishVersion = '2.0.0'
-    desc = '对微信、QQ、微博第三方分享登录的封装'
-    website = 'https://github.com/tsy12321/SocialSDKAndroid'
-    dryRun = false
-    bintrayUser = properties.getProperty('bintrayUser');
-    bintrayKey = properties.getProperty('bintrayKey');
-}
+//publish {
+//    userOrg = 'tangsiyuan'
+//    groupId = 'com.tsy.social'
+//    artifactId = 'social-sdk-full'
+//    publishVersion = '2.0.0'
+//    desc = '对微信、QQ、微博第三方分享登录的封装'
+//    website = 'https://github.com/tsy12321/SocialSDKAndroid'
+//    dryRun = false
+//    bintrayUser = properties.getProperty('bintrayUser');
+//    bintrayKey = properties.getProperty('bintrayKey');
+//}

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.tsy.socialsample"
@@ -21,15 +21,15 @@ android {
 //        }
 //    }
 //
-//    buildTypes {
-//        debug {
+    buildTypes {
+        debug {
 //            signingConfig signingConfigs.release
-//        }
-//        release {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//        }
-//    }
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 buildscript {
@@ -37,23 +37,23 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
-apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     //ButterKnife
-    compile 'com.jakewharton:butterknife:8.2.1'
-    apt 'com.jakewharton:butterknife-compiler:8.2.1'
+//    compile 'com.jakewharton:butterknife:8.2.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
     compile 'pub.devrel:easypermissions:1.0.1'
 
 //    compile 'com.tsy.social:social-sdk-full:2.0.0'
 //    compile 'com.tsy.social:social-sdk-core:2.0.0'
-    compile project(':social_sdk')
+    implementation project(':social_sdk')
     //social sdk
 //    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.4.0'
 //    compile files('libs/qq_mta-sdk-1.6.2.jar')
