@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class SocialApi {
 
-    private static SocialApi mApi = null;
+    private static volatile SocialApi mApi = null;
     private static Context mContext = null;
 
     private final Map<PlatformType, SSOHandler> mMapSSOHandler = new HashMap();
@@ -36,7 +36,11 @@ public class SocialApi {
      */
     public static SocialApi get(Context context) {
         if(mApi == null) {
-            mApi = new SocialApi(context);
+            synchronized (SocialApi.class) {
+                if (mApi == null) {
+                    mApi = new SocialApi(context);
+                }
+            }
         }
 
         return mApi;
