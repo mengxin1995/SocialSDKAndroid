@@ -34,6 +34,7 @@ public class SocialApi {
      * @param context 建议传入全局context
      * @return
      */
+    //TODO 这边直接用AppHolder的上下文
     public static SocialApi get(Context context) {
         if(mApi == null) {
             synchronized (SocialApi.class) {
