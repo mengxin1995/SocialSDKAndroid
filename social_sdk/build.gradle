@@ -33,8 +33,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     //    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:1.4.0'
-    compile 'com.sina.weibo.sdk:core:1.0.0:openDefaultRelease@aar'
-    //    compile(name: 'openDefault-4.3.6', ext: 'aar')
+//    compile 'com.sina.weibo.sdk:core:1.0.0:openDefaultRelease@aar'
+        compile(name: 'openDefault-4.3.6', ext: 'aar')
 }
 
 //tasks.withType(Javadoc) {

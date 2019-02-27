@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.sina.weibo.sdk.api.share.BaseResponse;
-import com.sina.weibo.sdk.api.share.IWeiboHandler;
+import com.sina.weibo.sdk.share.WbShareCallback;
 import com.tsy.sdk.social.PlatformConfig;
 import com.tsy.sdk.social.PlatformType;
 import com.tsy.sdk.social.SocialApi;
@@ -13,7 +12,7 @@ import com.tsy.sdk.social.SocialApi;
 /**
  * Created by tsy on 16/8/4.
  */
-public class WBShareCallbackActivity extends Activity implements IWeiboHandler.Response {
+public class WBShareCallbackActivity extends Activity implements WbShareCallback {
 
     protected SinaWBHandler mSinaWBHandler = null;
 
@@ -45,9 +44,24 @@ public class WBShareCallbackActivity extends Activity implements IWeiboHandler.R
         this.mSinaWBHandler.onNewIntent(intent, this);
     }
 
+//    @Override
+//    public void onResponse(BaseResponse baseResponse) {
+//        this.mSinaWBHandler.onResponse(baseResponse);
+//        finish();
+//    }
+
     @Override
-    public void onResponse(BaseResponse baseResponse) {
-        this.mSinaWBHandler.onResponse(baseResponse);
-        finish();
+    public void onWbShareSuccess() {
+
+    }
+
+    @Override
+    public void onWbShareCancel() {
+
+    }
+
+    @Override
+    public void onWbShareFail() {
+
     }
 }
